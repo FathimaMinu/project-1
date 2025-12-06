@@ -1,0 +1,658 @@
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delicious Bites - Bootstrap Food Website</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --bs-danger-rgb: 220, 53, 69;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding-top: 56px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/hero-bg.jpg') no-repeat center center/cover;
+            height: 100vh;
+            margin-top: -56px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Menu Items */
+        .menu-card {
+            transition: all 0.3s ease;
+            border: none;
+            overflow: hidden;
+            transform: translateY(0);
+        }
+
+        .menu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-card .card-img-top {
+            transition: transform 0.5s ease;
+        }
+
+        .menu-card:hover .card-img-top {
+            transform: scale(1.05);
+        }
+
+        .price {
+            font-size: 1.1rem;
+            white-space: nowrap;
+        }
+
+        /* Animations */
+        .animate-pop {
+            animation: pop 0.3s ease;
+        }
+
+        @keyframes pop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .slide-in {
+            animation: slideIn 0.5s ease forwards;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-section {
+                text-align: center;
+            }
+            
+            .display-3 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">
+                <span class="text-danger">Delicious</span>Bites
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#menu">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item ms-lg-3">
+                        <button class="btn btn-danger position-relative" data-bs-toggle="modal" data-bs-target="#cartModal">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span id="cart-badge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-light text-dark">0</span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-lg-8 mx-auto text-center text-white animate__animated animate__fadeIn">
+                    <h1 class="display-3 fw-bold mb-4">Delicious Food Delivered To Your Doorstep</h1>
+                    <p class="lead mb-5">Order your favorite meals from our restaurant</p>
+                    <a href="#menu" class="btn btn-danger btn-lg px-4 me-2 animate__animated animate__pulse animate__infinite">View Menu</a>
+                    <button class="btn btn-outline-light btn-lg px-4" data-bs-toggle="modal" data-bs-target="#cartModal">Order Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-5 bg-light">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2 class="display-5 fw-bold mb-4 animate__animated animate__fadeIn">Our Menu</h2>
+                    <p class="lead mb-5">Discover our delicious offerings</p>
+                </div>
+            </div>
+            
+            <!-- Menu Items -->
+            <div class="row g-4" id="menu-items">
+                
+                <!-- Burgers Category -->
+                <div class="col-12 mt-5 mb-3">
+                    <h3 class="text-center text-danger">Burgers</h3>
+                    <div class="border-bottom border-danger mx-auto" style="width: 100px;"></div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card menu-card h-100 shadow-sm">
+                        <div class="position-relative">
+                            <img src="images/burger.jpg" class="card-img-top" alt="Classic Cheeseburger" style="height: 200px; object-fit: cover;">
+                            <span class="position-absolute top-0 start-0 bg-danger text-white px-2 py-1 small">Popular</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <h5 class="card-title">Classic Cheeseburger</h5>
+                                <span class="price text-danger fw-bold">$12.99</span>
+                            </div>
+                            <p class="card-text text-muted">100% Angus beef with American cheese, lettuce, and special sauce</p>
+                            <button class="btn btn-outline-danger btn-sm add-to-cart" data-id="1" data-name="Classic Cheeseburger" data-price="12.99">
+                                <i class="fas fa-plus me-1"></i> Add to Order
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card menu-card h-100 shadow-sm">
+                        <img src="images/burger2.jpg" class="card-img-top" alt="Bacon Burger" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <h5 class="card-title">Bacon Burger</h5>
+                                <span class="price text-danger fw-bold">$14.99</span>
+                            </div>
+                            <p class="card-text text-muted">Angus beef with crispy bacon, cheddar, and BBQ sauce</p>
+                            <button class="btn btn-outline-danger btn-sm add-to-cart" data-id="2" data-name="Bacon Burger" data-price="14.99">
+                                <i class="fas fa-plus me-1"></i> Add to Order
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pizza Category -->
+                <div class="col-12 mt-5 mb-3">
+                    <h3 class="text-center text-danger">Pizza</h3>
+                    <div class="border-bottom border-danger mx-auto" style="width: 100px;"></div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card menu-card h-100 shadow-sm">
+                        <div class="position-relative">
+                            <img src="images/pizza.jpg" class="card-img-top" alt="Margherita Pizza" style="height: 200px; object-fit: cover;">
+                            <span class="position-absolute top-0 start-0 bg-danger text-white px-2 py-1 small">Popular</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <h5 class="card-title">Margherita Pizza</h5>
+                                <span class="price text-danger fw-bold">$15.99</span>
+                            </div>
+                            <p class="card-text text-muted">Fresh mozzarella, basil, and San Marzano tomatoes</p>
+                            <button class="btn btn-outline-danger btn-sm add-to-cart" data-id="3" data-name="Margherita Pizza" data-price="15.99">
+                                <i class="fas fa-plus me-1"></i> Add to Order
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card menu-card h-100 shadow-sm">
+                    <div class="position-relative">
+                       <img src="images/pepperoni-pizza.jpg" class="card-img-top" alt="Pepperoni Pizza" style="height: 200px; object-fit: cover;">
+                       <span class="position-absolute top-0 start-0 bg-danger text-white px-2 py-1 small">Best Seller</span>
+                    </div>
+                    <div class="card-body">
+                       <div class="d-flex justify-content-between">
+                           <h5 class="card-title">Pepperoni Pizza</h5>
+                           <span class="price text-danger fw-bold">$16.99</span>
+                        </div>
+                        <p class="card-text text-muted">Classic pizza with tomato sauce, mozzarella, and premium pepperoni</p>
+                        <button class="btn btn-outline-danger btn-sm add-to-cart" data-id="11" data-name="Pepperoni Pizza" data-price="16.99">
+                            <i class="fas fa-plus me-1"></i> Add to Order
+                        </button>
+                    </div>
+                </div>
+            </div>
+                
+                <!-- Salads Category -->
+                <div class="col-12 mt-5 mb-3">
+                    <h3 class="text-center text-danger">Salads</h3>
+                    <div class="border-bottom border-danger mx-auto" style="width: 100px;"></div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card menu-card h-100 shadow-sm">
+                        <img src="images/salad.jpg" class="card-img-top" alt="Caesar Salad" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <h5 class="card-title">Caesar Salad</h5>
+                                <span class="price text-danger fw-bold">$9.99</span>
+                            </div>
+                            <p class="card-text text-muted">Romaine lettuce, croutons, parmesan with Caesar dressing</p>
+                            <button class="btn btn-outline-danger btn-sm add-to-cart" data-id="4" data-name="Caesar Salad" data-price="9.99">
+                                <i class="fas fa-plus me-1"></i> Add to Order
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card menu-card h-100 shadow-sm">
+                        <img src="images/MasalaChoppedSalad.jpg" class="card-img-top" alt="MasalaChoppedSalad" style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <h5 class="card-title">MasalaChoppedSalad</h5>
+                                <span class="price text-danger fw-bold">$12.99</span>
+                            </div>
+                            <p class="card-text text-muted">cucumbers,tomatoes,mint,onionsw,bell pepers,with masala</p>
+                            <button class="btn btn-outline-danger btn-sm add-to-cart" data-id="4" data-name="MasalaChoppedSalad" data-price="12.99">
+                                <i class="fas fa-plus me-1"></i> Add to Order
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            
+<!-- Coffee Category -->
+<div class="col-12 mt-5 mb-3">
+    <h3 class="text-center text-danger">Coffee & Drinks</h3>
+    <div class="border-bottom border-danger mx-auto" style="width: 100px;"></div>
+</div>
+<div class="col-md-6 col-lg-4 mb-4">
+    <div class="card menu-card h-70 shadow-sm">
+        <div class="position-relative">
+            <img src="images/cappuccino.jpg" class="card-img-top" alt="Cappuccino" style="height: 260px; object-fit: cover;">
+            <span class="position-absolute top-0 start-0 bg-danger text-white px-2 py-1 small">Popular</span>
+        </div>
+        <div class="card-body">
+            <div class="d-flex justify-content-between">
+                <h5 class="card-title">Cappuccino</h5>
+                <span class="price text-danger fw-bold">$5.49</span>
+            </div>
+            <p class="card-text text-muted">Espresso with equal parts steamed milk and foam</p>
+            <button class="btn btn-outline-danger btn-sm add-to-cart" data-id="8" data-name="Cappuccino" data-price="5.49">
+                <i class="fas fa-plus me-1"></i> Add to Order
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6 col-lg-4 mb-4">
+    <div class="card menu-card h-70 shadow-sm">
+        <div class="position-relative">
+            <img src="images/Americancoffe.jpg" class="card-img-top" alt="Americancoffe" style="height: 260px; object-fit: cover;">
+            <span class="position-absolute top-0 start-0 bg-danger text-white px-2 py-1 small">Popular</span>
+        </div>
+        <div class="card-body">
+            <div class="d-flex justify-content-between">
+                <h5 class="card-title">Americancoffe</h5>
+                <span class="price text-danger fw-bold">$4.49</span>
+            </div>
+            <p class="card-text text-muted">Espresso with equal parts steamed milk and foam</p>
+            <button class="btn btn-outline-danger btn-sm add-to-cart" data-id="8" data-name="Americancoffe" data-price="4.49">
+                <i class="fas fa-plus me-1"></i> Add to Order
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Desserts Category -->
+<div class="col-12 mt-5 mb-3">
+    <h3 class="text-center text-danger">Desserts</h3>
+    <div class="border-bottom border-danger mx-auto" style="width: 100px;"></div>
+</div>
+<div class="col-md-6 col-lg-4 mb-4">
+    <div class="card menu-card h-100 shadow-sm">
+        <img src="images/chocolate-lava.jpg" class="card-img-top" alt="Chocolate Lava Cake" style="height: 200px; object-fit: cover;">
+        <div class="card-body">
+            <div class="d-flex justify-content-between">
+                <h5 class="card-title">Chocolate Lava Cake</h5>
+                <span class="price text-danger fw-bold">$8.99</span>
+            </div>
+            <p class="card-text text-muted">Warm chocolate cake with a molten center, served with vanilla ice cream</p>
+            <button class="btn btn-outline-danger btn-sm add-to-cart" data-id="10" data-name="Chocolate Lava Cake" data-price="8.99">
+                <i class="fas fa-plus me-1"></i> Add to Order
+            </button>
+        </div>
+    </div>
+</div>
+
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0 animate__animated animate__fadeInLeft">
+                    <img src="images/chef.jpg" alt="Our Chef" class="img-fluid rounded shadow">
+                </div>
+                <div class="col-lg-6 animate__animated animate__fadeInRight">
+                    <h2 class="display-5 fw-bold mb-4">About Us</h2>
+                    <p class="lead">We are a family-owned restaurant dedicated to serving delicious, high-quality food made from fresh, locally-sourced ingredients.</p>
+                    <p>Our chefs have over 20 years of experience creating culinary masterpieces that will delight your taste buds.</p>
+                    <a href="#contact" class="btn btn-danger mt-3">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 bg-light">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center mb-5">
+                    <h2 class="display-5 fw-bold mb-4">Contact Us</h2>
+                    <p class="lead">Have questions or want to make a reservation? Get in touch!</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-5 animate__animated animate__fadeInLeft">
+                    <div class="contact-info p-4 h-100 rounded bg-white shadow-sm">
+                        <h3 class="h4 mb-4">Get in Touch</h3>
+                        <p class="mb-3"><i class="fas fa-map-marker-alt text-danger me-2"></i> 123 Food Street, City</p>
+                        <p class="mb-3"><i class="fas fa-phone text-danger me-2"></i> (123) 456-7890</p>
+                        <p class="mb-4"><i class="fas fa-envelope text-danger me-2"></i> info@deliciousbites.com</p>
+                        <div class="social-links">
+                            <a href="#" class="text-decoration-none me-3"><i class="fab fa-facebook-f fa-lg"></i></a>
+                            <a href="#" class="text-decoration-none me-3"><i class="fab fa-instagram fa-lg"></i></a>
+                            <a href="#" class="text-decoration-none me-3"><i class="fab fa-twitter fa-lg"></i></a>
+                            <a href="#" class="text-decoration-none"><i class="fab fa-yelp fa-lg"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7 animate__animated animate__fadeInRight">
+                    <form id="contactForm" class="contact-form p-4 rounded bg-white shadow-sm">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="Your Name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="email" class="form-control" placeholder="Your Email" required>
+                            </div>
+                            <div class="col-12">
+                                <input type="text" class="form-control" placeholder="Subject">
+                            </div>
+                            <div class="col-12">
+                                <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-danger px-4 py-2">Send Message</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4 bg-dark text-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">&copy; 2023 Delicious Bites. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="#" class="text-white text-decoration-none me-3">Privacy Policy</a>
+                    <a href="#" class="text-white text-decoration-none">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Modal -->
+    <div class="modal fade" id="cartModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Your Order</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-0">
+                    <div class="list-group list-group-flush" id="cart-items">
+                        <div class="text-center py-4">
+                            <i class="fas fa-shopping-cart fa-3x text-muted mb-3"></i>
+                            <p class="text-muted">Your cart is empty</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button class="btn btn-outline-danger" id="clear-cart">
+                        <i class="fas fa-trash me-1"></i> Clear
+                    </button>
+                    <div>
+                        <span class="fw-bold me-3">Total: <span id="cart-total">$0.00</span></span>
+                        <button class="btn btn-danger" id="checkout-btn">
+                            <i class="fas fa-check me-1"></i> Checkout
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Cart functionality
+        let cart = [];
+        const cartItemsContainer = document.getElementById('cart-items');
+        const cartTotalElement = document.getElementById('cart-total');
+        const cartBadge = document.getElementById('cart-badge');
+        const cartModal = new bootstrap.Modal(document.getElementById('cartModal'));
+        
+        // Add to cart buttons
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('add-to-cart') || e.target.closest('.add-to-cart')) {
+                const button = e.target.classList.contains('add-to-cart') ? e.target : e.target.closest('.add-to-cart');
+                const item = {
+                    id: button.dataset.id,
+                    name: button.dataset.name,
+                    price: parseFloat(button.dataset.price),
+                    quantity: 1
+                };
+                addToCart(item);
+                
+                // Add animation to button
+                button.classList.add('animate-pop');
+                setTimeout(() => {
+                    button.classList.remove('animate-pop');
+                }, 300);
+            }
+        });
+        
+        // Add item to cart
+        function addToCart(item) {
+            const existingItem = cart.find(i => i.id === item.id);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push(item);
+            }
+            
+            updateCart();
+            showToast(`${item.name} added to cart`);
+            
+            // Animate cart badge
+            cartBadge.classList.add('animate-pop');
+            setTimeout(() => {
+                cartBadge.classList.remove('animate-pop');
+            }, 300);
+        }
+        
+        // Update cart display
+        function updateCart() {
+            cartItemsContainer.innerHTML = '';
+            let total = 0;
+            
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = `
+                    <div class="text-center py-4">
+                        <i class="fas fa-shopping-cart fa-3x text-muted mb-3"></i>
+                        <p class="text-muted">Your cart is empty</p>
+                    </div>
+                `;
+                cartBadge.textContent = '0';
+            } else {
+                cart.forEach((item, index) => {
+                    const cartItem = document.createElement('div');
+                    cartItem.className = 'list-group-item slide-in';
+                    cartItem.style.animationDelay = `${index * 0.1}s`;
+                    cartItem.innerHTML = `
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="mb-1">${item.name}</h6>
+                                <small class="text-muted">$${item.price.toFixed(2)} × ${item.quantity}</small>
+                            </div>
+                            <div>
+                                <span class="fw-bold">$${(item.price * item.quantity).toFixed(2)}</span>
+                                <button class="btn btn-sm btn-outline-danger ms-2 remove-item" data-id="${item.id}">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    cartItemsContainer.appendChild(cartItem);
+                    total += item.price * item.quantity;
+                });
+                
+                cartBadge.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+            }
+            
+            cartTotalElement.textContent = `$${total.toFixed(2)}`;
+            
+            // Add event listeners to remove buttons
+            document.querySelectorAll('.remove-item').forEach(button => {
+                button.addEventListener('click', function() {
+                    removeFromCart(this.dataset.id);
+                });
+            });
+        }
+        
+        // Remove item from cart
+        function removeFromCart(itemId) {
+            cart = cart.filter(item => item.id !== itemId);
+            updateCart();
+            showToast('Item removed from cart');
+        }
+        
+        // Clear entire cart
+        document.getElementById('clear-cart').addEventListener('click', function() {
+            cart = [];
+            updateCart();
+            cartModal.hide();
+            showToast('Cart cleared');
+        });
+        
+        // Checkout function
+        document.getElementById('checkout-btn').addEventListener('click', function() {
+            if (cart.length === 0) {
+                showToast('Your cart is empty', 'danger');
+                return;
+            }
+            
+            // Create order summary
+            let orderSummary = "Order Details:\n\n";
+            let total = 0;
+            
+            cart.forEach(item => {
+                orderSummary += `${item.name} - $${item.price.toFixed(2)} × ${item.quantity} = $${(item.price * item.quantity).toFixed(2)}\n`;
+                total += item.price * item.quantity;
+            });
+            
+            orderSummary += `\nTotal: $${total.toFixed(2)}`;
+            
+            // In a real application, you would send this to your backend
+            console.log("Order submitted:", orderSummary);
+            
+            // Show confirmation
+            showToast(`Order placed! Total: $${total.toFixed(2)}`, 'success');
+            
+            // Clear cart
+            cart = [];
+            updateCart();
+            cartModal.hide();
+        });
+        
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = this.querySelector('input[type="text"]').value;
+            const email = this.querySelector('input[type="email"]').value;
+            const subject = this.querySelector('input[placeholder="Subject"]').value;
+            const message = this.querySelector('textarea').value;
+            
+            // Basic validation
+            if (!name || !email || !message) {
+                showToast('Please fill all required fields', 'danger');
+                return;
+            }
+            
+            // In a real application, you would send this to your backend
+            console.log("Contact form submitted:", { name, email, subject, message });
+            
+            // Show success message
+            showToast('Thank you for your message! We will contact you soon.', 'success');
+            
+            // Reset form
+            this.reset();
+        });
+        
+        // Show toast notification
+        function showToast(message, type = 'success') {
+            const toastContainer = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `toast show align-items-center text-white bg-${type} border-0`;
+            toast.setAttribute('role', 'alert');
+            toast.setAttribute('aria-live', 'assertive');
+            toast.setAttribute('aria-atomic', 'true');
+            toast.innerHTML = `
+                <div class="d-flex">
+                    <div class="toast-body">
+                        ${message}
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            `;
+            
+            toastContainer.appendChild(toast);
+            
+            // Auto remove after 3 seconds
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+    });
+    </script>
+</body>
+</html>
