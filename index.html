@@ -1,17 +1,12 @@
-html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delicious Bites - Bootstrap Food Website</title>
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Animate.css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <!-- Custom CSS -->
     <style>
         :root {
             --bs-danger-rgb: 220, 53, 69;
@@ -24,7 +19,8 @@ html
 
         /* Hero Section */
         .hero-section {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/hero-bg.jpg') no-repeat center center/cover;
+            /* [FIXED] Removed 'images/' from path */
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('hero-bg.jpg') no-repeat center center/cover;
             height: 100vh;
             margin-top: -56px;
             display: flex;
@@ -90,7 +86,6 @@ html
     </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
         <div class="container">
             <a class="navbar-brand fw-bold" href="#">
@@ -124,7 +119,6 @@ html
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section id="home" class="hero-section">
         <div class="container h-100">
             <div class="row h-100 align-items-center">
@@ -138,7 +132,6 @@ html
         </div>
     </section>
 
-    <!-- Menu Section -->
     <section id="menu" class="py-5 bg-light">
         <div class="container py-5">
             <div class="row justify-content-center">
@@ -148,10 +141,8 @@ html
                 </div>
             </div>
             
-            <!-- Menu Items -->
             <div class="row g-4" id="menu-items">
                 
-                <!-- Burgers Category -->
                 <div class="col-12 mt-5 mb-3">
                     <h3 class="text-center text-danger">Burgers</h3>
                     <div class="border-bottom border-danger mx-auto" style="width: 100px;"></div>
@@ -160,7 +151,7 @@ html
                 <div class="col-md-6 col-lg-4 mb-4">
                     <div class="card menu-card h-100 shadow-sm">
                         <div class="position-relative">
-                            <img src="burger.jpg"> class="card-img-top" alt="Classic Cheeseburger" style="height: 200px; object-fit: cover;">
+                            <img src="burger.jpg" class="card-img-top" alt="Classic Cheeseburger" style="height: 200px; object-fit: cover;">
                             <span class="position-absolute top-0 start-0 bg-danger text-white px-2 py-1 small">Popular</span>
                         </div>
                         <div class="card-body">
@@ -178,7 +169,7 @@ html
                 
                 <div class="col-md-6 col-lg-4 mb-4">
                     <div class="card menu-card h-100 shadow-sm">
-                        <img src="images/burger2.jpg" class="card-img-top" alt="Bacon Burger" style="height: 200px; object-fit: cover;">
+                        <img src="burger2.jpg" class="card-img-top" alt="Bacon Burger" style="height: 200px; object-fit: cover;">
                         <div class="card-body">
                             <div class="d-flex justify-content-between">
                                 <h5 class="card-title">Bacon Burger</h5>
@@ -192,7 +183,6 @@ html
                     </div>
                 </div>
                 
-                <!-- Pizza Category -->
                 <div class="col-12 mt-5 mb-3">
                     <h3 class="text-center text-danger">Pizza</h3>
                     <div class="border-bottom border-danger mx-auto" style="width: 100px;"></div>
@@ -201,7 +191,7 @@ html
                 <div class="col-md-6 col-lg-4 mb-4">
                     <div class="card menu-card h-100 shadow-sm">
                         <div class="position-relative">
-                            <img src="images/pizza.jpg" class="card-img-top" alt="Margherita Pizza" style="height: 200px; object-fit: cover;">
+                            <img src="pizza.jpg" class="card-img-top" alt="Margherita Pizza" style="height: 200px; object-fit: cover;">
                             <span class="position-absolute top-0 start-0 bg-danger text-white px-2 py-1 small">Popular</span>
                         </div>
                         <div class="card-body">
@@ -217,26 +207,25 @@ html
                     </div>
                 </div>
 
-            <div class="col-md-6 col-lg-4 mb-4">
-                <div class="card menu-card h-100 shadow-sm">
-                    <div class="position-relative">
-                       <img src="images/pepperoni-pizza.jpg" class="card-img-top" alt="Pepperoni Pizza" style="height: 200px; object-fit: cover;">
-                       <span class="position-absolute top-0 start-0 bg-danger text-white px-2 py-1 small">Best Seller</span>
-                    </div>
-                    <div class="card-body">
-                       <div class="d-flex justify-content-between">
-                           <h5 class="card-title">Pepperoni Pizza</h5>
-                           <span class="price text-danger fw-bold">$16.99</span>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card menu-card h-100 shadow-sm">
+                        <div class="position-relative">
+                            <img src="pepperoni-pizza.jpg" class="card-img-top" alt="Pepperoni Pizza" style="height: 200px; object-fit: cover;">
+                           <span class="position-absolute top-0 start-0 bg-danger text-white px-2 py-1 small">Best Seller</span>
                         </div>
-                        <p class="card-text text-muted">Classic pizza with tomato sauce, mozzarella, and premium pepperoni</p>
-                        <button class="btn btn-outline-danger btn-sm add-to-cart" data-id="11" data-name="Pepperoni Pizza" data-price="16.99">
-                            <i class="fas fa-plus me-1"></i> Add to Order
-                        </button>
+                        <div class="card-body">
+                           <div class="d-flex justify-content-between">
+                               <h5 class="card-title">Pepperoni Pizza</h5>
+                               <span class="price text-danger fw-bold">$16.99</span>
+                           </div>
+                           <p class="card-text text-muted">Classic pizza with tomato sauce, mozzarella, and premium pepperoni</p>
+                           <button class="btn btn-outline-danger btn-sm add-to-cart" data-id="11" data-name="Pepperoni Pizza" data-price="16.99">
+                               <i class="fas fa-plus me-1"></i> Add to Order
+                           </button>
+                        </div>
                     </div>
                 </div>
-            </div>
                 
-                <!-- Salads Category -->
                 <div class="col-12 mt-5 mb-3">
                     <h3 class="text-center text-danger">Salads</h3>
                     <div class="border-bottom border-danger mx-auto" style="width: 100px;"></div>
@@ -244,7 +233,7 @@ html
                 
                 <div class="col-md-6 col-lg-4 mb-4">
                     <div class="card menu-card h-100 shadow-sm">
-                        <img src="images/salad.jpg" class="card-img-top" alt="Caesar Salad" style="height: 200px; object-fit: cover;">
+                        <img src="salad.jpg" class="card-img-top" alt="Caesar Salad" style="height: 200px; object-fit: cover;">
                         <div class="card-body">
                             <div class="d-flex justify-content-between">
                                 <h5 class="card-title">Caesar Salad</h5>
@@ -259,7 +248,7 @@ html
                 </div>
                 <div class="col-md-6 col-lg-4 mb-4">
                     <div class="card menu-card h-100 shadow-sm">
-                        <img src="images/MasalaChoppedSalad.jpg" class="card-img-top" alt="MasalaChoppedSalad" style="height: 200px; object-fit: cover;">
+                        <img src="MasalaChoppedSalad.jpg" class="card-img-top" alt="MasalaChoppedSalad" style="height: 200px; object-fit: cover;">
                         <div class="card-body">
                             <div class="d-flex justify-content-between">
                                 <h5 class="card-title">MasalaChoppedSalad</h5>
@@ -272,8 +261,7 @@ html
                         </div>
                     </div>
                 </div>
-            
-<!-- Coffee Category -->
+                
 <div class="col-12 mt-5 mb-3">
     <h3 class="text-center text-danger">Coffee & Drinks</h3>
     <div class="border-bottom border-danger mx-auto" style="width: 100px;"></div>
@@ -281,7 +269,7 @@ html
 <div class="col-md-6 col-lg-4 mb-4">
     <div class="card menu-card h-70 shadow-sm">
         <div class="position-relative">
-            <img src="images/cappuccino.jpg" class="card-img-top" alt="Cappuccino" style="height: 260px; object-fit: cover;">
+            <img src="cappuccino.jpg" class="card-img-top" alt="Cappuccino" style="height: 260px; object-fit: cover;">
             <span class="position-absolute top-0 start-0 bg-danger text-white px-2 py-1 small">Popular</span>
         </div>
         <div class="card-body">
@@ -300,7 +288,7 @@ html
 <div class="col-md-6 col-lg-4 mb-4">
     <div class="card menu-card h-70 shadow-sm">
         <div class="position-relative">
-            <img src="images/Americancoffe.jpg" class="card-img-top" alt="Americancoffe" style="height: 260px; object-fit: cover;">
+            <img src="Americancoffe.jpg" class="card-img-top" alt="Americancoffe" style="height: 260px; object-fit: cover;">
             <span class="position-absolute top-0 start-0 bg-danger text-white px-2 py-1 small">Popular</span>
         </div>
         <div class="card-body">
@@ -316,14 +304,13 @@ html
     </div>
 </div>
 
-<!-- Desserts Category -->
 <div class="col-12 mt-5 mb-3">
     <h3 class="text-center text-danger">Desserts</h3>
     <div class="border-bottom border-danger mx-auto" style="width: 100px;"></div>
 </div>
 <div class="col-md-6 col-lg-4 mb-4">
     <div class="card menu-card h-100 shadow-sm">
-        <img src="images/chocolate-lava.jpg" class="card-img-top" alt="Chocolate Lava Cake" style="height: 200px; object-fit: cover;">
+        <img src="chocolate-lava.jpg" class="card-img-top" alt="Chocolate Lava Cake" style="height: 200px; object-fit: cover;">
         <div class="card-body">
             <div class="d-flex justify-content-between">
                 <h5 class="card-title">Chocolate Lava Cake</h5>
@@ -339,12 +326,11 @@ html
 
     </section>
 
-    <!-- About Section -->
     <section id="about" class="py-5">
         <div class="container py-5">
             <div class="row align-items-center">
                 <div class="col-lg-6 mb-4 mb-lg-0 animate__animated animate__fadeInLeft">
-                    <img src="images/chef.jpg" alt="Our Chef" class="img-fluid rounded shadow">
+                    <img src="chef.jpg" alt="Our Chef" class="img-fluid rounded shadow">
                 </div>
                 <div class="col-lg-6 animate__animated animate__fadeInRight">
                     <h2 class="display-5 fw-bold mb-4">About Us</h2>
@@ -356,7 +342,6 @@ html
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact" class="py-5 bg-light">
         <div class="container py-5">
             <div class="row justify-content-center">
@@ -405,7 +390,6 @@ html
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="py-4 bg-dark text-white">
         <div class="container">
             <div class="row">
@@ -420,7 +404,6 @@ html
         </div>
     </footer>
 
-    <!-- Cart Modal -->
     <div class="modal fade" id="cartModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -451,13 +434,10 @@ html
         </div>
     </div>
 
-    <!-- Toast Container -->
     <div id="toast-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
 
-    <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
-    <!-- Custom JS -->
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Cart functionality
@@ -656,4 +636,3 @@ html
     </script>
 </body>
 </html>
-
